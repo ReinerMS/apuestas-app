@@ -1,0 +1,108 @@
+/* src/index.css
+ *
+ * Aquí definimos nuestra paleta "Estadio nocturno" como colores
+ * reutilizables de Tailwind. Así, en cualquier componente, en vez de
+ * escribir bg-[#0B1428] (un color "mágico" sin nombre), escribimos
+ * bg-fondo, que es más fácil de leer y de cambiar en un solo lugar
+ * si el día de mañana quieres ajustar la paleta completa.
+ *
+ * @theme es la forma en que Tailwind v4 permite definir tokens propios
+ * directamente en CSS (en v3 esto se hacía en tailwind.config.js).
+ */
+
+/* Importamos las dos tipografías de nuestro sistema de diseño.
+   Display = títulos y marca (Space Grotesk).
+   Cuerpo = texto normal, más legible en tamaños chicos (Inter). */
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap");
+
+@import "tailwindcss";
+
+
+
+@theme {
+  --color-fondo: #0b1428;
+  --color-superficie: #131e3a;
+  --color-superficie-alta: #1c2a4d;
+  --color-acento: #f0a500;
+  --color-acento-claro: #ffb923;
+  --color-vivo: #ff4d4d;
+  --color-texto: #f4f1ea;
+  --color-texto-tenue: #8b96b3;
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-cuerpo: "Inter", sans-serif;
+}
+
+/* MODO CLARO ("Estadio de día")
+ *
+ * Esto es lo nuevo. Cuando el elemento <html> tenga la clase "light",
+ * estas variables SOBRESCRIBEN a las de arriba. Como nuestras clases de
+ * Tailwind (bg-fondo, text-texto, etc.) están armadas con var(--color-fondo)
+ * por debajo, cambiar estas variables cambia automáticamente TODO el sitio,
+ * sin tocar un solo componente.
+ *
+ * Mantenemos el mismo ámbar de acento en ambos modos: es lo que hace que
+ * la marca se siga reconociendo aunque cambie el fondo.
+ */
+html.light {
+  --color-fondo: #f7f5f0;
+  --color-superficie: #ffffff;
+  --color-superficie-alta: #e9e6dc;
+  --color-acento: #d98c00;
+  --color-acento-claro: #f0a500;
+  --color-vivo: #e63946;
+  --color-texto: #131e3a;
+  --color-texto-tenue: #6b7280;
+}
+
+body {
+  font-family: var(--font-cuerpo);
+  background-color: var(--color-fondo);
+  transition: background-color 0.3s ease;
+}
+
+/* Transición suave para cualquier elemento que cambie de color al
+   cambiar de modo (texto, bordes, fondos de tarjetas, etc.) */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* Animación personalizada para la línea "que respira" bajo el logo.
+   Tailwind no trae esta animación por defecto (cambia el ancho, no solo
+   la opacidad), así que la definimos nosotros una sola vez aquí, y la
+   usamos en cualquier componente con la clase "animate-pulse-line". */
+@keyframes pulse-line {
+  0%,
+  100% {
+    width: 1.5rem;
+    opacity: 0.6;
+  }
+  50% {
+    width: 2.5rem;
+    opacity: 1;
+  }
+}
+
+.animate-pulse-line {
+  animation: pulse-line 2.4s ease-in-out infinite;
+}
+
+/* Animación de rebote para el balón de la página 404.
+   translateY mueve el elemento hacia arriba (valores negativos) y
+   abajo, simulando un bote. La curva "ease-in-out" hace que se sienta
+   más natural que un movimiento lineal (más lento en los extremos,
+   más rápido en el medio). */
+@keyframes rebote {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-rebote {
+  animation: rebote 1s ease-in-out infinite;
+}

@@ -1,0 +1,17 @@
+# Dependencias
+node_modules/
+
+# Variables de entorno con datos REALES (la plantilla .env.example sí se sube)
+.env
+.env.local
+
+# Build
+dist/
+build/
+
+# Editor / sistema
+.vscode/
+.DS_Store
+
+# Logs
+npm-debug.log*
