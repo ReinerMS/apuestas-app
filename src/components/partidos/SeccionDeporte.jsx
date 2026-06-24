@@ -25,8 +25,8 @@ export default function SeccionDeporte({
   if (!partidos || partidos.length === 0) return null;
 
   return (
-    <section className="mb-10">
-      <div className="flex items-center justify-between mb-4">
+    <section className="mb-4">
+      <div className="flex items-center justify-between mb-2">
         <h2 className="font-display text-xl font-bold text-texto flex items-center gap-2">
           <span aria-hidden="true">{icono}</span>
           {titulo}

@@ -83,7 +83,7 @@ export default function PaginaDeporte() {
       {partidosDeEsteDeporte.length === 0 ? (
         <p className="text-texto-tenue">No hay partidos disponibles ahora.</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
           {partidosDeEsteDeporte.map((partido) => (
             <PartidoCard
               key={partido.id}

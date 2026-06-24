@@ -18,12 +18,13 @@ import PaginaLogin from "../pages/PaginaLogin";
 import PaginaRegistro from "../pages/PaginaRegistro";
 import PaginaHistorial from "../pages/PaginaHistorial";
 import PaginaDeporte from "../pages/PaginaDeporte";
-import PaginaNoEncontrada from "../pages/PaginaNoEncontrada";
+import Error404 from "../pages/Error404";
 
 export default function AppRouter() {
   return (
     <Routes>
       <Route path="/" element={<PaginaInicio />} />
+      <Route path="/partidos" element={<PaginaDeporte />} />
       <Route path="/login" element={<PaginaLogin />} />
       <Route path="/registro" element={<PaginaRegistro />} />
       <Route path="/historial" element={<PaginaHistorial />} />
@@ -33,7 +34,7 @@ export default function AppRouter() {
 
       {/* IMPORTANTE: esta ruta va SIEMPRE al final. El path="*"
           significa "cualquier cosa que no haya coincidido arriba". */}
-      <Route path="*" element={<PaginaNoEncontrada />} />
+      <Route path="*" element={<Error404 />} />
     </Routes>
   );
 }

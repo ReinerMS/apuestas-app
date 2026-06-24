@@ -13,10 +13,9 @@ function BotonCuota({ etiqueta, valor, seleccionado, onClick }) {
     <button
       onClick={onClick}
       className={`flex flex-col items-center justify-center rounded-lg py-2.5 px-1 transition-all duration-200
-        ${
-          seleccionado
-            ? "bg-acento text-fondo scale-[1.02]"
-            : "bg-superficie-alta text-texto hover:bg-superficie-alta/70"
+        ${seleccionado
+          ? "bg-acento text-fondo scale-[1.02]"
+          : "bg-superficie-alta text-texto hover:bg-superficie-alta/70"
         }`}
     >
       <span className="text-base font-semibold">{valor.toFixed(2)}</span>
@@ -47,7 +46,7 @@ export default function PartidoCard({ partido, seleccionActual, onSeleccionar })
         <span className="text-xs text-texto-tenue">{fechaFormateada}</span>
       </div>
 
-      <h3 className="font-display text-base font-bold text-texto mb-3">
+      <h3 className="font-display text-base font-bold text-texto mb-2">
         {equipoLocal} <span className="text-texto-tenue font-normal">vs</span>{" "}
         {equipoVisita}
       </h3>

@@ -50,6 +50,16 @@ export default function BarraNavegacion() {
           <NavLink to="/" className={claseEnlace} end>
             {({ isActive }) => (
               <span>
+                Inicio
+                {isActive && (
+                  <span className="absolute left-0 -bottom-1 w-full h-0.5 bg-acento rounded-full" />
+                )}
+              </span>
+            )}
+          </NavLink>
+          <NavLink to="/deporte/futbol" className={claseEnlace} end>
+            {({ isActive }) => (
+              <span>
                 Partidos
                 {isActive && (
                   <span className="absolute left-0 -bottom-1 w-full h-0.5 bg-acento rounded-full" />

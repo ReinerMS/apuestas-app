@@ -12,11 +12,12 @@
 // 5. Renderizamos un <SeccionDeporte /> por cada una
 
 import { useState } from "react";
-import { partidos } from "../data/partidos";
-import { deportes } from "../data/deportes";
-import { secciones } from "../data/secciones";
-import SeccionDeporte from "../components/partidos/SeccionDeporte";
-import BannerCarousel from "../components/comunes/BannerHome";
+import { partidos } from "@/data/partidos";
+import { deportes } from "@/data/deportes";
+import { secciones } from "@/data/secciones";
+import SeccionDeporte from "@/components/partidos/SeccionDeporte";
+import BannerHome from "@/components/comunes/BannerHome";
+import SportsGrid from "@/components/comunes/SportsGrid";
 
 export default function PaginaInicio() {
   const [selecciones, setSelecciones] = useState({});
@@ -69,15 +70,12 @@ export default function PaginaInicio() {
     <div className="min-h-screen bg-fondo p-6">
 
       <div className="mb-4">
-        <BannerCarousel></BannerCarousel>
+        <BannerHome></BannerHome>
+      </div>
+      <div>
+        <SportsGrid></SportsGrid>
       </div>
 
-      <h1 className="font-display text-2xl font-bold text-texto mb-1">
-        Partidos disponibles
-      </h1>
-      <p className="text-texto-tenue mb-8">
-        Selecciona una cuota para agregarla a tu apuesta
-      </p>
 
       {/* Paso 3, 4 y 5 combinados en el .map() */}
       {seccionesVisibles.map((seccion) => {
