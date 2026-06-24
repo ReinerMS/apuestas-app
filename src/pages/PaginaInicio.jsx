@@ -16,6 +16,7 @@ import { partidos } from "../data/partidos";
 import { deportes } from "../data/deportes";
 import { secciones } from "../data/secciones";
 import SeccionDeporte from "../components/partidos/SeccionDeporte";
+import BannerCarousel from "../components/comunes/BannerHome";
 
 export default function PaginaInicio() {
   const [selecciones, setSelecciones] = useState({});
@@ -62,7 +63,15 @@ export default function PaginaInicio() {
     .sort((a, b) => a.orden - b.orden);
 
   return (
+
+
+
     <div className="min-h-screen bg-fondo p-6">
+
+      <div className="mb-4">
+        <BannerCarousel></BannerCarousel>
+      </div>
+
       <h1 className="font-display text-2xl font-bold text-texto mb-1">
         Partidos disponibles
       </h1>
@@ -81,6 +90,7 @@ export default function PaginaInicio() {
         );
 
         return (
+
           <SeccionDeporte
             key={seccion.id}
             titulo={seccion.titulo}
