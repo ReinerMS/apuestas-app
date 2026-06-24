@@ -8,12 +8,18 @@
 
 import BarraNavegacion from "./components/comunes/BarraNavegacion";
 import AppRouter from "./router/AppRouter";
+import CarritoFlotante from "./components/carrito/CarritoFlotante";
 
 function App() {
   return (
     <>
       <BarraNavegacion />
       <AppRouter />
+      {/* Fuera de AppRouter a propósito: así el botón flotante y el
+          panel del carrito se ven en CUALQUIER página, no solo en el
+          home. Si estuviera dentro de una <Route>, desaparecería al
+          cambiar de página. */}
+      <CarritoFlotante />
     </>
   );
 }

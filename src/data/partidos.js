@@ -1,18 +1,23 @@
 // src/data/partidos.js
 //
-// Igual que antes, esto es "mock data". Lo nuevo: cada partido ahora
-// tiene un campo "deporteId" que lo conecta con un deporte de
-// deportes.js. Así, cuando pidamos "los partidos de básquet", podemos
-// filtrar este arreglo por ese campo.
+// NUEVO: cada partido de fútbol ahora tiene un campo "mercados", que es
+// un arreglo con TODOS los tipos de apuesta disponibles para ese
+// partido (1x2, total de goles, ambos marcan, etc.). Cada mercado
+// tiene esta forma:
+//   { clave, nombre, opciones: [{ etiqueta, cuota }, ...] }
 //
-// También agregamos el campo "modalidad", que cambia según el deporte
-// (fútbol usa 1x2, básquet/tenis/béisbol usan "gana A" vs "gana B",
-// sin empate). Esto es importante: no todos los deportes se apuestan
-// igual, y el componente que muestra las cuotas va a necesitar saber
-// si debe mostrar 2 o 3 botones.
+// Mantenemos también "cuotas" (el mercado principal 1x2/2vías) porque
+// PartidoCard, en el home, sigue mostrando solo ESE mercado resumido —
+// no queremos que la tarjeta chica del home se llene de 4 mercados a
+// la vez. El campo "mercados" completo se usa en la página de DETALLE
+// del partido, a la que se llega haciendo click en la tarjeta.
+//
+// Básquet/tenis/béisbol por ahora siguen solo con "cuotas" (sin
+// mercados extendidos) — los podemos ampliar después con el mismo
+// patrón si quieres.
 
 export const partidos = [
-  // ---------- FÚTBOL (deporteId: 1) ----------
+  // ---------- FÚTBOL (deporteId: 1) — con mercados extendidos ----------
   {
     id: 1,
     deporteId: 1,
@@ -22,6 +27,42 @@ export const partidos = [
     equipoVisita: "Austria",
     fecha: "2026-06-22T11:00:00",
     cuotas: { local: 1.5, empate: 4.0, visita: 7.5 },
+    mercados: [
+      {
+        clave: "1x2",
+        nombre: "Resultado del partido",
+        opciones: [
+          { etiqueta: "Argentina", cuota: 1.5 },
+          { etiqueta: "Empate", cuota: 4.0 },
+          { etiqueta: "Austria", cuota: 7.5 },
+        ],
+      },
+      {
+        clave: "total_goles",
+        nombre: "Total de goles",
+        opciones: [
+          { etiqueta: "Más de 2.5", cuota: 1.95 },
+          { etiqueta: "Menos de 2.5", cuota: 1.86 },
+        ],
+      },
+      {
+        clave: "ambos_marcan",
+        nombre: "Ambos equipos marcan",
+        opciones: [
+          { etiqueta: "Sí", cuota: 1.8 },
+          { etiqueta: "No", cuota: 1.95 },
+        ],
+      },
+      {
+        clave: "doble_oportunidad",
+        nombre: "Doble oportunidad",
+        opciones: [
+          { etiqueta: "Argentina o Empate", cuota: 1.18 },
+          { etiqueta: "Argentina o Austria", cuota: 1.12 },
+          { etiqueta: "Empate o Austria", cuota: 2.9 },
+        ],
+      },
+    ],
   },
   {
     id: 2,
@@ -32,6 +73,33 @@ export const partidos = [
     equipoVisita: "Japón",
     fecha: "2026-06-22T14:00:00",
     cuotas: { local: 1.35, empate: 4.5, visita: 8.0 },
+    mercados: [
+      {
+        clave: "1x2",
+        nombre: "Resultado del partido",
+        opciones: [
+          { etiqueta: "Brasil", cuota: 1.35 },
+          { etiqueta: "Empate", cuota: 4.5 },
+          { etiqueta: "Japón", cuota: 8.0 },
+        ],
+      },
+      {
+        clave: "total_goles",
+        nombre: "Total de goles",
+        opciones: [
+          { etiqueta: "Más de 2.5", cuota: 1.7 },
+          { etiqueta: "Menos de 2.5", cuota: 2.1 },
+        ],
+      },
+      {
+        clave: "ambos_marcan",
+        nombre: "Ambos equipos marcan",
+        opciones: [
+          { etiqueta: "Sí", cuota: 2.0 },
+          { etiqueta: "No", cuota: 1.7 },
+        ],
+      },
+    ],
   },
   {
     id: 3,
@@ -42,9 +110,36 @@ export const partidos = [
     equipoVisita: "Alajuelense",
     fecha: "2026-06-23T19:00:00",
     cuotas: { local: 2.1, empate: 3.2, visita: 3.4 },
+    mercados: [
+      {
+        clave: "1x2",
+        nombre: "Resultado del partido",
+        opciones: [
+          { etiqueta: "Saprissa", cuota: 2.1 },
+          { etiqueta: "Empate", cuota: 3.2 },
+          { etiqueta: "Alajuelense", cuota: 3.4 },
+        ],
+      },
+      {
+        clave: "total_goles",
+        nombre: "Total de goles",
+        opciones: [
+          { etiqueta: "Más de 2.5", cuota: 2.05 },
+          { etiqueta: "Menos de 2.5", cuota: 1.78 },
+        ],
+      },
+      {
+        clave: "ambos_marcan",
+        nombre: "Ambos equipos marcan",
+        opciones: [
+          { etiqueta: "Sí", cuota: 1.95 },
+          { etiqueta: "No", cuota: 1.8 },
+        ],
+      },
+    ],
   },
 
-  // ---------- BÁSQUET (deporteId: 2) — sin empate ----------
+  // ---------- BÁSQUET (deporteId: 2) — sin empate, sin mercados extendidos aún ----------
   {
     id: 4,
     deporteId: 2,

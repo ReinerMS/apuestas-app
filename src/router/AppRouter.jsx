@@ -13,24 +13,26 @@
 // responsabilidades distintas.
 
 import { Routes, Route } from "react-router-dom";
-import PaginaInicio from "../pages/PaginaInicio";
-import PaginaLogin from "../pages/PaginaLogin";
-import PaginaRegistro from "../pages/PaginaRegistro";
-import PaginaHistorial from "../pages/PaginaHistorial";
-import PaginaDeporte from "../pages/PaginaDeporte";
-import Error404 from "../pages/Error404";
+import PaginaInicio from "@/pages/PaginaInicio";
+import PaginaLogin from "@/pages/PaginaLogin";
+import PaginaRegistro from "@/pages/PaginaRegistro";
+import PaginaHistorial from "@/pages/PaginaHistorial";
+import PaginaDeporte from "@/pages/PaginaDeporte";
+import PaginaDetallePartido from "@/pages/PaginaDetallePartido";
+import Error404 from "@/pages/Error404";
 
 export default function AppRouter() {
   return (
     <Routes>
       <Route path="/" element={<PaginaInicio />} />
-      <Route path="/partidos" element={<PaginaDeporte />} />
       <Route path="/login" element={<PaginaLogin />} />
       <Route path="/registro" element={<PaginaRegistro />} />
       <Route path="/historial" element={<PaginaHistorial />} />
       {/* :slug es un parámetro dinámico — coincide con cualquier
           valor en esa posición de la URL (futbol, tenis, etc.) */}
       <Route path="/deporte/:slug" element={<PaginaDeporte />} />
+      {/* :id identifica el partido específico al que se hizo click */}
+      <Route path="/partido/:id" element={<PaginaDetallePartido />} />
 
       {/* IMPORTANTE: esta ruta va SIEMPRE al final. El path="*"
           significa "cualquier cosa que no haya coincidido arriba". */}

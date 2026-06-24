@@ -10,6 +10,48 @@
 // 3) Si el día de mañana cambia la fórmula (ej. agregamos comisión),
 //    solo tocamos este archivo, no cada componente que la usa.
 
+// LÍMITES DE APUESTA
+//
+// Los definimos como constantes EXPORTADAS (no como números sueltos
+// escritos directo en cada componente) por una razón importante:
+// cuando conectemos Supabase en la Fase 4-5, el backend va a necesitar
+// estos MISMOS valores para revalidar (recuerda la regla de oro: nunca
+// confiar solo en lo que valida el frontend). Tener un solo lugar con
+// la verdad evita que el frontend diga "mínimo 1000" y el backend
+// piense otra cosa.
+export const MONTO_MINIMO = 1000;
+export const MONTO_MAXIMO = 50000;
+
+/**
+ * Revisa si un monto está dentro del rango permitido para apostar.
+ * Devuelve un objeto con el resultado Y un mensaje listo para mostrar,
+ * para no repetir esa lógica de texto en cada componente que lo use.
+ *
+ * @param {number} monto
+ * @returns {{ valido: boolean, mensaje: string | null }}
+ */
+export function validarMontoApuesta(monto) {
+  if (!monto || monto <= 0) {
+    return { valido: false, mensaje: "Ingresa un monto para apostar." };
+  }
+
+  if (monto < MONTO_MINIMO) {
+    return {
+      valido: false,
+      mensaje: `El monto mínimo es ${formatearMoneda(MONTO_MINIMO)}.`,
+    };
+  }
+
+  if (monto > MONTO_MAXIMO) {
+    return {
+      valido: false,
+      mensaje: `El monto máximo por selección es ${formatearMoneda(MONTO_MAXIMO)}.`,
+    };
+  }
+
+  return { valido: true, mensaje: null };
+}
+
 /**
  * Calcula cuánto se ganaría (monto total, incluyendo lo apostado)
  * dado un monto apostado y una cuota.
