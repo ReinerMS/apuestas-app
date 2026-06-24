@@ -103,7 +103,7 @@ export default function BannerHome() {
       {/* Flecha izquierda */}
       <button
         onClick={prevSlide}
-        className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-sm text-white text-xl"
+        className="hover:scale-110 absolute left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-sm text-white text-xl"
       >
         ❮
       </button>
@@ -111,7 +111,7 @@ export default function BannerHome() {
       {/* Flecha derecha */}
       <button
         onClick={nextSlide}
-        className="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-sm text-white text-xl"
+        className="hover:scale-110 absolute right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-sm text-white text-xl"
       >
         ❯
       </button>
